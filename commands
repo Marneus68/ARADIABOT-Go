@@ -1,0 +1,7 @@
+#Commands, for reference
+:marneus!~duane@Rizon-43B5C82C.rev.sfr.net PRIVMSG #iridia_test :lel
+:marneus!~duane@Rizon-43B5C82C.rev.sfr.net PRIVMSG ARADIABOT :lel
+:marneus!~duane@Rizon-43B5C82C.rev.sfr.net PRIVMSG ARADIABOT :PING 1447574575183
+:marneus!~duane@Rizon-43B5C82C.rev.sfr.net PRIVMSG ARADIABOT :VERSION
+:marneus!~duane@Rizon-43B5C82C.rev.sfr.net PRIVMSG #iridia_test :ACTION lel
+:irc.rizon.io PONG irc.rizon.io :irc.rizon.io
