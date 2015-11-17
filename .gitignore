@@ -26,3 +26,6 @@ _testmain.go
 # Specific executable
 aradiabot
 aradiabot-golang
+
+# Editor swap files
+*.swp

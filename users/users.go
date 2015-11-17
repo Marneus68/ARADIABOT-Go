@@ -6,44 +6,17 @@ import (
     "bufio"
     "strings"
     "strconv"
+    "aradiabot/fileloc"
 )
 
-type UsersFileLocation int
-
-const (
-    Default UsersFileLocation = iota
-    Local UsersFileLocation = iota
-)
-
-var FileLocation UsersFileLocation = 3
-
-var DefaultFileFullPath string = "./users.log"
-var LocalFileFullPath string = "~/.aradiabot/users.log"
+var File = "users.log"
 
 type Users struct {
    Map map[string]int64
 }
 
-func checkUsersFileLocation() {
-    _, err := os.Stat(LocalFileFullPath)
-    if err == nil {
-        fmt.Printf("Local users file (%s) found.\n", LocalFileFullPath)
-        FileLocation = Local
-    } else {
-        _, eerr := os.Stat(DefaultFileFullPath)
-        if eerr == nil {
-            fmt.Printf("Default users file (%s) found.\n", DefaultFileFullPath)
-            FileLocation = Default
-        } else {
-            fmt.Printf("No user file found, creating default users file (%s).\n", DefaultFileFullPath)
-            os.Create(DefaultFileFullPath)
-        }
-    }
-}
-
 func New() *Users {
     fmt.Println("Loading users file...")
-    checkUsersFileLocation()
     return Read()
 }
 
@@ -54,14 +27,12 @@ func Read() *Users {
 }
 
 func (u Users) Read() {
-    var fileName string
-    switch FileLocation {
-        case Default:
-        fileName = DefaultFileFullPath
-        case Local:
-        fileName = LocalFileFullPath
-    }
-    file, err := os.Open(fileName)
+    // If file doesn't exist
+
+    // We create it
+
+    // Else we read it
+    file, err := os.Open(fileloc.Dir + "/" + File)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Unable to open users file for reading: %s\n", err)
         return
@@ -82,14 +53,7 @@ func (u Users) Read() {
 }
 
 func (u Users) Write() {
-    var fileName string
-    switch FileLocation {
-        case Default:
-        fileName = DefaultFileFullPath
-        case Local:
-        fileName = LocalFileFullPath
-    }
-    file, err := os.Create(fileName)
+    file, err := os.Create(fileloc.Dir + "/" + File)
     if (err != nil) {
         fmt.Fprintf(os.Stderr, "Unable to open users file for writing: %s\n", err)
         return
