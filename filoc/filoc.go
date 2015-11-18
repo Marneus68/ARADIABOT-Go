@@ -1,4 +1,6 @@
-package fileloc
+// Package deciding on the location to use to read and store users file, history
+// and configuration
+package filoc
 
 import (
     "os"
@@ -7,7 +9,7 @@ import (
 
 var Dir string = ""
 
-var dirs = [...]string{ "~/.aradiabot", "./" }
+var dirs = [...]string{ "~/.aradiabot", "." }
 
 func init() {
     for _, dirpath := range dirs {

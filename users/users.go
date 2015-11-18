@@ -1,3 +1,8 @@
+// Structure and functions relating to the list of registered users
+//
+// This package holds the Users structure representing the list of registered 
+// users to the history service of the bot well as the functions necessary to
+// read it from and write it to a file.
 package users
 
 import (
@@ -6,7 +11,7 @@ import (
     "bufio"
     "strings"
     "strconv"
-    "aradiabot/fileloc"
+    "aradiabot/filoc"
 )
 
 var File = "users.log"
@@ -27,12 +32,16 @@ func Read() *Users {
 }
 
 func (u Users) Read() {
-    // If file doesn't exist
-
-    // We create it
-
-    // Else we read it
-    file, err := os.Open(fileloc.Dir + "/" + File)
+    var filepath = filoc.Dir + "/" +  File
+    _, err := os.Stat(filepath)
+    if err != nil {
+        fmt.Println("Users file doesn't exist. Creating it at " + 
+            filepath)
+        // If file doesn't exist we create it
+        os.Create(filepath)
+    }
+    // Then we read it
+    file, err := os.Open(filepath)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Unable to open users file for reading: %s\n", err)
         return
@@ -53,7 +62,8 @@ func (u Users) Read() {
 }
 
 func (u Users) Write() {
-    file, err := os.Create(fileloc.Dir + "/" + File)
+    var filepath = filoc.Dir + "/" +  File
+    file, err := os.Create(filepath)
     if (err != nil) {
         fmt.Fprintf(os.Stderr, "Unable to open users file for writing: %s\n", err)
         return
