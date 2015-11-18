@@ -29,3 +29,7 @@ aradiabot-golang
 
 # Editor swap files
 *.swp
+
+# Aradiabot specific file to ignore
+users.log
+history.log
