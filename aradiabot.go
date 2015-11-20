@@ -3,6 +3,7 @@ package main
 import (
     "os"
     "fmt"
+    "aradiabot/hist"
     "aradiabot/usage"
     "aradiabot/ircbot"
 )

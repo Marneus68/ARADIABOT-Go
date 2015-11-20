@@ -35,9 +35,8 @@ func (u Users) Read() {
     var filepath = filoc.Dir + "/" +  File
     _, err := os.Stat(filepath)
     if err != nil {
-        fmt.Println("Users file doesn't exist. Creating it at " + 
-            filepath)
         // If file doesn't exist we create it
+        fmt.Println("Users file doesn't exist. Creating it at " + filepath)
         os.Create(filepath)
     }
     // Then we read it
